@@ -8,6 +8,7 @@ package model.dao;
 import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.bean.Aluno;
 
@@ -47,4 +48,33 @@ public class AlunoDAO {
         }
     }
 
+    public Aluno selecionar(String campo1) {
+        Aluno alu = new Aluno();
+        String sql = "SELECT * FROM alunos "
+                + "WHERE ra = ?";
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, campo1);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                alu.setRa(rs.getString("ra"));
+                alu.setNome(rs.getString("nome"));
+                alu.setCpf(rs.getString("cpf"));
+                alu.setCurso(rs.getString("curso"));
+                alu.setSemestre(rs.getInt("semestre"));
+                alu.setSenha(rs.getString("senha"));
+                alu.setPerfil(rs.getInt("perfil"));
+                alu.setHorario(rs.getString("horario"));
+                alu.setEmail(rs.getString("email"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        return alu;
+    }
 }

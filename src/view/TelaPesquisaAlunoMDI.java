@@ -7,6 +7,8 @@ package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.bean.Aluno;
+import model.dao.AlunoDAO;
 
 /**
  *
@@ -234,9 +236,14 @@ public class TelaPesquisaAlunoMDI extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+        AlunoDAO dao = new AlunoDAO();
+        Aluno al = dao.selecionar(tfRA.getText());
+        //tfNome.setText(al.getNome());
         DefaultTableModel dtmPesquisaAlunos = (DefaultTableModel) tableAlunos.getModel();
-        Object[] dados = {tfRA.getText(), tfNome.getText(), tfCurso.getText(), tfCPF.getText(), tfSemestre.getText(), cfHorario.getSelectedItem()};
+        Object[] dados = {al.getRa(), al.getNome(), al.getCurso(), al.getCpf()
+                , al.getSemestre(), al.getHorario()};
         dtmPesquisaAlunos.addRow(dados);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
