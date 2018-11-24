@@ -77,4 +77,34 @@ public class AlunoDAO {
         }
         return alu;
     }
+    
+    public boolean alterar (Aluno aluno, String OldRA){
+        AlunoDAO dao = new AlunoDAO();
+        String sql = "UPDATE alunos "
+                      + "SET ra = ?, nome = ?, curso = ?, cpf = ?, semestre = ?, horario = ?, email = ?"
+                       + "WHERE ra = " + OldRA;
+        PreparedStatement stmt = null;
+        try {
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, aluno.getRa());
+            stmt.setString(2, aluno.getNome());
+            stmt.setString(3, aluno.getCurso());
+            stmt.setString(4, aluno.getCpf());
+            stmt.setInt(5, aluno.getSemestre());
+            stmt.setString(6, aluno.getHorario());
+            stmt.setString(7, aluno.getEmail());
+            stmt.executeUpdate();
+            return true;
+            
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            
+            ConnectionFactory.closeConnection(con, stmt);       
+        }
+            
+        
+    }
 }

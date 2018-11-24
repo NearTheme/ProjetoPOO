@@ -68,6 +68,12 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Confirmar Senha");
 
+        tfcadSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfcadSenhaActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +231,7 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame {
         al.setRa(tfcadRA.getText());
         al.setCpf(tfcadCpf.getText());
         al.setNome(tfcadNome.getText());
-        al.setSenha(Arrays.toString(tfcadSenha.getPassword()));
+        al.setSenha((Arrays.toString(tfcadSenha.getPassword())));
         al.setPerfil(Integer.parseInt(tfcadPerfil.getText()));
         al.setCurso(tfcadCurso.getText());
         al.setSemestre(Integer.parseInt(tfcadSemestre.getText()));
@@ -241,11 +247,14 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tfcadSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfcadSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfcadSenhaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cfcadHorario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
