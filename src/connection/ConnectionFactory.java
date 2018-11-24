@@ -29,7 +29,7 @@ public class ConnectionFactory {
         try {
             //Class.forName("DriverManager");
             Class.forName("com.mysql.jdbc.Driver"); 
-            return DriverManager.getConnection("jdbc:mysql://localhost/projetodb","root","1234");
+            return DriverManager.getConnection("jdbc:mysql://localhost/projetodb","root","");
 
             
         } catch (ClassNotFoundException | SQLException ex) {
