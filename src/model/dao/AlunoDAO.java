@@ -77,15 +77,15 @@ public class AlunoDAO {
         }
         return alu;
     }
-    
-    public boolean alterar (Aluno aluno, String OldRA){
+
+    public boolean alterar(Aluno aluno, String OldRA) {
         AlunoDAO dao = new AlunoDAO();
         String sql = "UPDATE alunos "
-                      + "SET ra = ?, nome = ?, curso = ?, cpf = ?, semestre = ?, horario = ?, email = ?"
-                       + "WHERE ra = " + OldRA;
+                + "SET ra = ?, nome = ?, curso = ?, cpf = ?, semestre = ?, horario = ?, email = ?"
+                + "WHERE ra = " + OldRA;
         PreparedStatement stmt = null;
         try {
-            
+
             stmt = con.prepareStatement(sql);
             stmt.setString(1, aluno.getRa());
             stmt.setString(2, aluno.getNome());
@@ -96,15 +96,35 @@ public class AlunoDAO {
             stmt.setString(7, aluno.getEmail());
             stmt.executeUpdate();
             return true;
-            
+
         } catch (SQLException ex) {
             System.err.println("Erro: " + ex);
             return false;
         } finally {
-            
-            ConnectionFactory.closeConnection(con, stmt);       
+
+            ConnectionFactory.closeConnection(con, stmt);
         }
-            
+
+    }
+
+    public boolean deletar(String delra) {
+
+        AlunoDAO dao = new AlunoDAO();
+        //Aluno alu = new Aluno();
+        String sql = "DELETE FROM alunos "
+                + "WHERE ra = " + delra;
         
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
 }

@@ -13,12 +13,12 @@ import model.dao.AlunoDAO;
  *
  * @author Luiz Oliveira
  */
-public class TelaCadastroUsuario extends javax.swing.JInternalFrame {
+public class TelaCadastroAluno extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaCadastroUsuario
      */
-    public TelaCadastroUsuario() {
+    public TelaCadastroAluno() {
         initComponents();
         jLabel5.setVisible(false);
     }
@@ -237,6 +237,18 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame {
         al.setSemestre(Integer.parseInt(tfcadSemestre.getText()));
         al.setHorario(cfcadHorario.getSelectedItem().toString());
         dao.save(al);
+        //limpando os campos
+        tfcadEmail.setText(null);
+        tfcadRA.setText(null);
+        tfcadCpf.setText(null);
+        tfcadNome.setText(null);
+        tfcadSenha.setText(null);
+        tfcadConfsenha.setText(null);
+        tfcadPerfil.setText(null);
+        tfcadCurso.setText(null);
+        tfcadSemestre.setText(null);
+        cfcadHorario.setSelectedIndex(0);
+        
         jLabel5.setVisible(true);
         
           

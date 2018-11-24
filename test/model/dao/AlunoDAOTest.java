@@ -45,4 +45,15 @@ public class AlunoDAOTest {
         
     }
     
+    @Test
+    @Ignore
+    public void deletar(){
+    
+        AlunoDAO dao = new AlunoDAO();
+        if(dao.deletar("1430481711033"))
+            System.out.println("Deletado com sucesso!");
+        else
+            fail("Erro na deleção");
+        
+    }
 }
