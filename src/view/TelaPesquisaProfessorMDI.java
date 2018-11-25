@@ -72,6 +72,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
 
         jLabel6.setText("CPF");
 
+        tfCPF.setEditable(false);
         try {
             tfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -92,7 +93,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setText("Deletar Aluno");
+        jButton5.setText("Deletar Professor");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -221,7 +222,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 993, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGap(0, 84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,12 +268,12 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
         int i = 0;
 
         DefaultTableModel dtmPesquisaProfessores = (DefaultTableModel) tableProfessores.getModel();
-        Object[] dados = {prof.getRm(), prof.getNome(), prof.getEmail(), prof.getFormacao(), prof.getEspecializacao(),
+        Object[] dados = {prof.getCpf(), prof.getRm(), prof.getNome(), prof.getEmail(), prof.getFormacao(), prof.getEspecializacao(),
              prof.getHorasdedicacao()};
         
         if (dtmPesquisaProfessores.getRowCount() > 0) {
             for (i = 0; i < dtmPesquisaProfessores.getRowCount(); i++) {
-                if (tfRM.getText().equals(dtmPesquisaProfessores.getValueAt(i, 0))) {
+                if (tfRM.getText().equals(dtmPesquisaProfessores.getValueAt(i, 1))) {
                     JOptionPane.showMessageDialog(null, "Professor já registrado em tabela.");
                     break;
                 }
@@ -319,8 +320,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
 
         dao.alterar(prof, oldrm);
         DefaultTableModel dtmPesquisaProfessores = (DefaultTableModel) tableProfessores.getModel();
-        Object[] dados = {prof.getRm(), prof.getNome(), prof.getEmail(), prof.getEspecializacao(), prof.getCpf(),
-             prof.getFormacao(), prof.getHorasdedicacao()};
+        Object[] dados = {prof.getCpf(), prof.getRm(), prof.getNome(), prof.getEmail(), prof.getFormacao(), prof.getEspecializacao(), prof.getHorasdedicacao()};
         dtmPesquisaProfessores.insertRow(tableProfessores.getSelectedRow(), dados);
         dtmPesquisaProfessores.removeRow(tableProfessores.getSelectedRow() + 1);
 

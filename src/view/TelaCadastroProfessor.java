@@ -57,12 +57,12 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
         tfcadCpf = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tfcadFormacao = new javax.swing.JTextField();
-        tfcadEspecializacao = new javax.swing.JFormattedTextField();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCadastro = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         tfcadHorasdedicacao = new javax.swing.JTextField();
+        tfcadEspecializacao = new javax.swing.JTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -107,8 +107,6 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
         jLabel9.setText("CPF");
 
         jLabel10.setText("Especializacao");
-
-        tfcadEspecializacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel12.setText("Formacao");
 
@@ -163,11 +161,10 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(tfcadHorasdedicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfcadFormacao, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel10)
-                                .addComponent(tfcadEspecializacao)))
+                            .addComponent(tfcadFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
+                            .addComponent(tfcadEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,12 +181,10 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfcadRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfcadEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfcadRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,7 +192,9 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(10, 10, 10)
+                        .addComponent(tfcadEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfcadHorasdedicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -218,7 +215,7 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfcadPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,7 +256,7 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
         prof.setEspecializacao(tfcadEspecializacao.getText());
         prof.setHorasdedicacao(Integer.parseInt(tfcadHorasdedicacao.getText()));
 
-        if (!dao.save(prof) && !dao2.save(prof)) {
+        if (!dao.save(prof)) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar professor.");
         } else {
 
@@ -318,7 +315,7 @@ public class TelaCadastroProfessor extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField tfcadConfsenha;
     private javax.swing.JTextField tfcadCpf;
     private javax.swing.JTextField tfcadEmail;
-    private javax.swing.JFormattedTextField tfcadEspecializacao;
+    private javax.swing.JTextField tfcadEspecializacao;
     private javax.swing.JTextField tfcadFormacao;
     private javax.swing.JTextField tfcadHorasdedicacao;
     private javax.swing.JTextField tfcadNome;

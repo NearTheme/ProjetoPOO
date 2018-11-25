@@ -106,6 +106,7 @@ public class TelaPesquisaProfessor extends javax.swing.JFrame {
 
         jLabel6.setText("CPF");
 
+        tfCPF.setEditable(false);
         try {
             tfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -119,7 +120,7 @@ public class TelaPesquisaProfessor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CPF", "RM", "Nome", "Formacao", "Especializacao", "Horas Dedicao"
+                "CPF", "RM", "Nome", "Formacao", "Especializacao", "Horas Dedicacao"
             }
         ));
         tableProfessores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -240,7 +241,7 @@ public class TelaPesquisaProfessor extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         DefaultTableModel dtmPesquisaProfessores = (DefaultTableModel) tableProfessores.getModel();
-        Object[] dados = {tfRM.getText(), tfNome.getText(), tfEspecializacao.getText(), tfCPF.getText(), tfFormacao.getText(), tfHorasdedicacao.getText()};
+        Object[] dados = {tfCPF.getText(), tfRM.getText(), tfNome.getText(), tfFormacao.getText(), tfEspecializacao.getText(), tfHorasdedicacao.getText()};
         dtmPesquisaProfessores.addRow(dados);
     }//GEN-LAST:event_jButton3ActionPerformed
 

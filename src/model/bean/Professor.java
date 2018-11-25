@@ -11,10 +11,10 @@ package model.bean;
  */
 public class Professor extends Pessoa
 {
-    protected String rm;
-    protected String formacao;
-    protected String especializacao;
-    protected int horasdedicacao;
+    private String rm;
+    private String formacao;
+    private String especializacao;
+    private int horasdedicacao;
     //protected Disciplina disciplinas;
 
     

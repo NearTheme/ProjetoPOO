@@ -27,9 +27,9 @@ public class ProfessorDAO {
 
     public boolean save(Professor professor) {
         
-        String sql = "INSERT INTO pessoa (cpf, nome, email, perfil, senha) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pessoas (cpf, nome, email, perfil, senha) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stmt = null;
-        String sql2 = "INSERT INTO professores (rm, formacao, especializacao, horasdedicacao) VALUES (?, ?, ?, ?)";
+        String sql2 = "INSERT INTO professores (rm, formacao, especializacao, horasdedicacao, cpf) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stmt2 = null;
         
         try {
@@ -45,6 +45,7 @@ public class ProfessorDAO {
             stmt2.setString(2, professor.getFormacao());
             stmt2.setString(3, professor.getEspecializacao());
             stmt2.setInt(4, professor.getHorasdedicacao());
+            stmt2.setString(5, professor.getCpf());
             stmt2.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -58,15 +59,23 @@ public class ProfessorDAO {
 
     public Professor selecionar(String campo1) {
         Professor prof = new Professor();
-        String sql = "SELECT * FROM professores "
-                + "WHERE rm = ?";
+        String sql = "SELECT pessoas.cpf, pessoas.nome, pessoas.email, pessoas.perfil, pessoas.senha, rm, formacao, especializacao, horasdedicacao FROM professores"
+                + " INNER JOIN pessoas ON( professores.cpf = pessoas.cpf ) WHERE rm = ?";
+        
         PreparedStatement stmt = null;
+        
         ResultSet rs = null;
+        
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, campo1);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                prof.setCpf(rs.getString("cpf"));
+                prof.setNome(rs.getString("nome"));
+                prof.setEmail(rs.getString("email"));
+                prof.setPerfil(rs.getInt("perfil"));
+                prof.setSenha(rs.getString("senha"));
                 prof.setRm(rs.getString("rm"));
                 prof.setFormacao(rs.getString("formacao"));
                 prof.setEspecializacao(rs.getString("especializacao"));
@@ -81,11 +90,15 @@ public class ProfessorDAO {
         return prof;
     }
     public boolean alterar(Professor professor, String OldRM) {
-        ProfessorDAO dao = new ProfessorDAO();
         String sql = "UPDATE professores "
                 + "SET rm = ?, formacao = ?, especializacao = ?, horasdedicacao = ?"
                 + "WHERE rm = " + OldRM;
         PreparedStatement stmt = null;
+               
+        String sql2 = "UPDATE pessoas "
+                + "SET nome = ?, email = ?" 
+                + "WHERE cpf = " + professor.getCpf();
+        PreparedStatement stmt2 = null;
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, professor.getRm());
@@ -93,6 +106,10 @@ public class ProfessorDAO {
             stmt.setString(3, professor.getEspecializacao());
             stmt.setInt(4, professor.getHorasdedicacao());
             stmt.executeUpdate();
+            stmt2 = con.prepareStatement(sql2);
+            stmt2.setString(1, professor.getNome());
+            stmt2.setString(2, professor.getEmail());
+            stmt2.executeUpdate();
             return true;
 
         } catch (SQLException ex) {
@@ -100,6 +117,7 @@ public class ProfessorDAO {
             return false;
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
+            ConnectionFactory.closeConnection(con, stmt2);
         }
 
     }
@@ -109,8 +127,8 @@ public class ProfessorDAO {
         ProfessorDAO dao = new ProfessorDAO();
         String sql = "DELETE FROM professores "
                 + "WHERE rm = " + delrm;
-        
         PreparedStatement stmt = null;
+        
         try {
             stmt = con.prepareStatement(sql);
             stmt.executeUpdate();
