@@ -35,7 +35,7 @@ public class AlunoDAO {
             stmt.setString(4, aluno.getNome());
             stmt.setString(5, aluno.getSenha());
             stmt.setInt(6, aluno.getPerfil());
-            stmt.setString(7, aluno.getCurso());
+            stmt.setInt(7, aluno.getCurso());
             stmt.setString(8, aluno.getHorario());
             stmt.setInt(9, aluno.getSemestre());
             stmt.executeUpdate();
@@ -62,7 +62,7 @@ public class AlunoDAO {
                 alu.setRa(rs.getString("ra"));
                 alu.setNome(rs.getString("nome"));
                 alu.setCpf(rs.getString("cpf"));
-                alu.setCurso(rs.getString("curso"));
+                alu.setCurso(rs.getInt("curso"));
                 alu.setSemestre(rs.getInt("semestre"));
                 alu.setSenha(rs.getString("senha"));
                 alu.setPerfil(rs.getInt("perfil"));
@@ -89,7 +89,7 @@ public class AlunoDAO {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, aluno.getRa());
             stmt.setString(2, aluno.getNome());
-            stmt.setString(3, aluno.getCurso());
+            stmt.setInt(3, aluno.getCurso());
             stmt.setString(4, aluno.getCpf());
             stmt.setInt(5, aluno.getSemestre());
             stmt.setString(6, aluno.getHorario());

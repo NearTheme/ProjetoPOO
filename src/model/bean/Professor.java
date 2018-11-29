@@ -15,7 +15,6 @@ public class Professor extends Pessoa
     private String formacao;
     private String especializacao;
     private int horasdedicacao;
-    //protected Disciplina disciplinas;
 
     
     public Professor()

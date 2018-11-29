@@ -18,12 +18,12 @@ public class Aluno {
     private String ra;
     private String horario;
     private int semestre;
-    private String curso;
+    private int curso;
 
     public Aluno() {
     }
 
-    public Aluno(String nome, String cpf, String senha, int perfil, String email, String ra, String horario, int semestre, String curso) {
+    public Aluno(String nome, String cpf, String senha, int perfil, String email, String ra, String horario, int semestre, int curso) {
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
@@ -100,11 +100,11 @@ public class Aluno {
         this.semestre = semestre;
     }
 
-    public String getCurso() {
+    public int getCurso() {
         return curso;
     }
 
-    public void setCurso(String curso) {
+    public void setCurso(int curso) {
         this.curso = curso;
     }
     

@@ -23,7 +23,7 @@ public class AlunoDAOTest {
     @Ignore
     public void inserir() {
         
-        Aluno al = new Aluno("Luiz", "433.331.778-98", "1234", 3, "luiz@email.com", "143048033", "manhã", 4, "ADS");
+        Aluno al = new Aluno("Luiz", "433.331.778-98", "1234", 3, "luiz@email.com", "143048033", "manhã", 4, 1);
         AlunoDAO dao = new AlunoDAO();
         if (dao.save(al)){
             System.out.println("Salvo com sucesso!");            
@@ -36,7 +36,7 @@ public class AlunoDAOTest {
     @Ignore
     public void update() {
         AlunoDAO dao = new AlunoDAO();
-        Aluno al = new Aluno("Daniel Mezalira", "1234", "12345", 3, "Daniel@mezalira", "157420", "Noite", 4, "ADS");
+        Aluno al = new Aluno("Daniel Mezalira", "1234", "12345", 3, "Daniel@mezalira", "157420", "Noite", 4, 1);
         String ra = "157420";
         if (dao.alterar(al, ra))
             System.out.println("Atualizado com sucesso!");
