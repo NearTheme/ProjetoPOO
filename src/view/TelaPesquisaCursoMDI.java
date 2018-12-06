@@ -243,8 +243,12 @@ public class TelaPesquisaCursoMDI extends javax.swing.JInternalFrame {
 
         DefaultTableModel dtmPesquisaCursos = (DefaultTableModel) tableCursos.getModel();
         Object[] dados = {curso.getCodigo(), curso.getNome(), curso.getHorario(), curso.getDatainicio(), curso.getDatafim()};
-
-        if (dtmPesquisaCursos.getRowCount() > 0) {
+        dtmPesquisaCursos.addRow(dados);
+        
+        if (curso.getCodigo() <= 0){
+            JOptionPane.showMessageDialog(null, "Curso não cadastrado!");
+        }
+        else if (dtmPesquisaCursos.getRowCount() > 0) {
             for (i = 0; i < dtmPesquisaCursos.getRowCount(); i++) {
                 if (tfCodigo.getText().equals(dtmPesquisaCursos.getValueAt(i, 0))) {
                     JOptionPane.showMessageDialog(null, "Curso já registrado em tabela.");
@@ -252,12 +256,10 @@ public class TelaPesquisaCursoMDI extends javax.swing.JInternalFrame {
                 }
             }
         }
-        if (curso.getCodigo() <= 0){
-            JOptionPane.showMessageDialog(null, "Curso não cadastrado!");
-        }
+        
         else if (i >= dtmPesquisaCursos.getRowCount()){
             dtmPesquisaCursos.addRow(dados);
-        }  
+        }
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -278,9 +280,8 @@ public class TelaPesquisaCursoMDI extends javax.swing.JInternalFrame {
 
         CursoDAO dao = new CursoDAO();
         Curso curso = new Curso();
-        int oldcodigo = Integer.parseInt(tableCursos.getValueAt(tableCursos.getSelectedRow(), 0).toString());
+        int oldcodigo = Integer.parseInt(tfCodigo.getText());
 
-        curso.setCodigo(Integer.parseInt(tfCodigo.getText()));
         curso.setNome(tfNome.getText());
         curso.setHorario(cfHorario.getSelectedItem().toString());
         curso.setDatainicio(tfDatainicio.getText());
@@ -288,7 +289,7 @@ public class TelaPesquisaCursoMDI extends javax.swing.JInternalFrame {
 
         dao.alterar(curso, oldcodigo);
         DefaultTableModel dtmPesquisaCursos = (DefaultTableModel) tableCursos.getModel();
-        Object[] dados = {curso.getCodigo(), curso.getNome(), curso.getHorario(), curso.getDatainicio(), curso.getDatafim()};
+        Object[] dados = {tfCodigo.getText(), curso.getNome(), curso.getHorario(), curso.getDatainicio(), curso.getDatafim()};
         dtmPesquisaCursos.insertRow(tableCursos.getSelectedRow(), dados);
         dtmPesquisaCursos.removeRow(tableCursos.getSelectedRow() + 1);
 

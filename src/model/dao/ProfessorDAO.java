@@ -90,34 +90,38 @@ public class ProfessorDAO {
         return prof;
     }
     public boolean alterar(Professor professor, String OldRM) {
+        PessoaDAO dao = new PessoaDAO();
         String sql = "UPDATE professores "
-                + "SET rm = ?, formacao = ?, especializacao = ?, horasdedicacao = ?"
-                + "WHERE rm = " + OldRM;
+                + "SET rm = ?, formacao = ?, especializacao = ?, horasdedicacao = ? "
+                + "WHERE rm = ?";
         PreparedStatement stmt = null;
                
-        String sql2 = "UPDATE pessoas "
-                + "SET nome = ?, email = ?" 
-                + "WHERE cpf = " + professor.getCpf();
-        PreparedStatement stmt2 = null;
+        /*String sql2 = "UPDATE pessoas "
+                + "SET nome = ?, email = ? " 
+                + "WHERE cpf = ?";
+        PreparedStatement stmt2 = null;*/
         try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, professor.getRm());
             stmt.setString(2, professor.getFormacao());
             stmt.setString(3, professor.getEspecializacao());
             stmt.setInt(4, professor.getHorasdedicacao());
+            stmt.setString(5, OldRM);
             stmt.executeUpdate();
-            stmt2 = con.prepareStatement(sql2);
+             return true;
+            /*stmt2 = con.prepareStatement(sql2);
             stmt2.setString(1, professor.getNome());
             stmt2.setString(2, professor.getEmail());
-            stmt2.executeUpdate();
-            return true;
+            stmt2.setString(3, professor.getCpf());
+            stmt2.executeUpdate();*/
+            
 
         } catch (SQLException ex) {
             System.err.println("Erro: " + ex);
             return false;
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
-            ConnectionFactory.closeConnection(con, stmt2);
+            //ConnectionFactory.closeConnection(con, stmt2);
         }
 
     }

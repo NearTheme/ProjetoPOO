@@ -264,8 +264,12 @@ public class TelaPesquisaDisciplinaMDI extends javax.swing.JInternalFrame {
 
         DefaultTableModel dtmPesquisaDisciplinas = (DefaultTableModel) tableDisciplinas.getModel();
         Object[] dados = {disciplina.getCodigo(), disciplina.getNome(), disciplina.getSemestre(), disciplina.getDatainicio(), disciplina.getDatafim(), disciplina.getCodigocurso()};
-
-        if (dtmPesquisaDisciplinas.getRowCount() > 0) {
+        
+        if (disciplina.getCodigo() <= 0){
+            JOptionPane.showMessageDialog(null, "Disciplina não cadastrada!");
+        }
+        
+        else if (dtmPesquisaDisciplinas.getRowCount() > 0) {
             for (i = 0; i < dtmPesquisaDisciplinas.getRowCount(); i++) {
                 if (tfCodigo.getText().equals(dtmPesquisaDisciplinas.getValueAt(i, 0))) {
                     JOptionPane.showMessageDialog(null, "Disciplina já registrado em tabela.");
@@ -273,9 +277,7 @@ public class TelaPesquisaDisciplinaMDI extends javax.swing.JInternalFrame {
                 }
             }
         }
-        if (disciplina.getCodigo() <= 0){
-            JOptionPane.showMessageDialog(null, "Disciplina não cadastrada!");
-        }
+        
         else if (i >= dtmPesquisaDisciplinas.getRowCount()){
             dtmPesquisaDisciplinas.addRow(dados);
         }  
@@ -306,7 +308,8 @@ public class TelaPesquisaDisciplinaMDI extends javax.swing.JInternalFrame {
         disciplina.setSemestre(Integer.parseInt(tfSemestre.getText()));
         disciplina.setDatainicio(tfDatainicio.getText());
         disciplina.setDatafim(tfDatafim.getText());
-        disciplina.setSemestre(Integer.parseInt(tfCodigocurso.getText()));
+        disciplina.setSemestre(Integer.parseInt(tfSemestre.getText()));
+        disciplina.setCodigocurso(Integer.parseInt(tfCodigocurso.getText()));
 
         dao.alterar(disciplina, oldcodigo);
         

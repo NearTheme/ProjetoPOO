@@ -74,10 +74,9 @@ public class DisciplinaDAO {
     }
 
     public boolean alterar(Disciplina disciplina, int OldCodigo) {
-        DisciplinaDAO dao = new DisciplinaDAO();
         String sql = "UPDATE disciplinas "
-                + "SET codigo = ?, nome = ?, semestre = ?, datainicio = ?, datafim = ?, curso = ?"
-                + "WHERE codigo = " + OldCodigo;
+                + "SET  codigo = ?, nome = ?, semestre = ?, datainicio = ?, datafim = ?, codigocurso = ? "
+                + "WHERE codigo = ?";
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(sql);
@@ -87,6 +86,7 @@ public class DisciplinaDAO {
             stmt.setString(4, disciplina.getDatainicio());
             stmt.setString(5, disciplina.getDatafim());
             stmt.setInt(6, disciplina.getCodigocurso());
+            stmt.setInt(7, OldCodigo);
             stmt.executeUpdate();
             return true;
 

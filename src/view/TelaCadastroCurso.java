@@ -190,7 +190,6 @@ public class TelaCadastroCurso extends javax.swing.JInternalFrame {
 
         Curso curso = new Curso();
         CursoDAO dao = new CursoDAO();
-        curso.setCodigo(Integer.parseInt(tfcadCodigo.getText()));
         curso.setNome(tfcadNome.getText());
         curso.setHorario(cfcadHorario.getSelectedItem().toString());
         curso.setDatainicio(tfcadDatainicio.getText());
@@ -199,8 +198,10 @@ public class TelaCadastroCurso extends javax.swing.JInternalFrame {
         if (!dao.save(curso)) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar curso.");
         }else {
+            CursoDAO dao2 = new CursoDAO();
+            int cod = dao2.selectCod(tfcadNome.getText());
             DefaultTableModel dtmCadastro = (DefaultTableModel) tableCadastro.getModel();
-            Object[] dados = {tfcadCodigo.getText(), tfcadNome.getText()};
+            Object[] dados = {cod, tfcadNome.getText()};
             tableCadastro.setVisible(true);
             dtmCadastro.addRow(dados);
             tfcadCodigo.setText(null);

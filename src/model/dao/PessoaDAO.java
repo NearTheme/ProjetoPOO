@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.bean.Pessoa;
+import model.bean.Professor;
 
 /**
  *
@@ -69,18 +70,17 @@ public class PessoaDAO {
         return pessoa;
     }
 
-    public boolean alterar(Pessoa pessoa, String OldCPF) {
-        PessoaDAO dao = new PessoaDAO();
+    public boolean alterar(Professor professor) {
         String sql = "UPDATE pessoas "
-                + "SET cpf = ?, nome = ?, email = ?"
-                + "WHERE cpf = " + OldCPF;
+                + "SET pessoas.nome = ?, pessoas.email = ? "
+                + "WHERE pessoas.cpf = ?";
         PreparedStatement stmt = null;
         try {
 
             stmt = con.prepareStatement(sql);
-            stmt.setString(1, pessoa.getCpf());
-            stmt.setString(2, pessoa.getNome());
-            stmt.setString(3, pessoa.getEmail());
+            stmt.setString(1, professor.getNome());
+            stmt.setString(2, professor.getEmail());
+            stmt.setString(3, professor.getCpf());
             stmt.executeUpdate();
             return true;
 

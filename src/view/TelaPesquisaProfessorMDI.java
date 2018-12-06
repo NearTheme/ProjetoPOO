@@ -46,11 +46,11 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
         tfEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tfFormacao = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         tfEspecializacao = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tfHorasdedicacao = new javax.swing.JTextField();
+        tfFormacao = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
         tableProfessores = new javax.swing.JTable();
 
@@ -103,8 +103,6 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
         jLabel7.setText("E-mail");
 
         jLabel5.setText("Formacao");
-
-        tfFormacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jLabel3.setText("Especializacao");
 
@@ -186,9 +184,9 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(tfFormacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -305,7 +303,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
         PessoaDAO dao2 = new PessoaDAO();
         Professor prof = new Professor();
         
-        String oldcpf = tableProfessores.getValueAt(tableProfessores.getSelectedRow(), 0).toString();
+        //String oldcpf = tableProfessores.getValueAt(tableProfessores.getSelectedRow(), 0).toString();
         String oldrm = tableProfessores.getValueAt(tableProfessores.getSelectedRow(), 1).toString();
         
         prof.setRm(tfRM.getText());
@@ -317,6 +315,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
         prof.setHorasdedicacao(Integer.parseInt(tfHorasdedicacao.getText()));
 
         dao.alterar(prof, oldrm);
+        dao2.alterar(prof);
         DefaultTableModel dtmPesquisaProfessores = (DefaultTableModel) tableProfessores.getModel();
         Object[] dados = {prof.getCpf(), prof.getRm(), prof.getNome(), prof.getEmail(), prof.getFormacao(), prof.getEspecializacao(), prof.getHorasdedicacao()};
         dtmPesquisaProfessores.insertRow(tableProfessores.getSelectedRow(), dados);
@@ -344,7 +343,7 @@ public class TelaPesquisaProfessorMDI extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField tfCPF;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEspecializacao;
-    private javax.swing.JFormattedTextField tfFormacao;
+    private javax.swing.JTextField tfFormacao;
     private javax.swing.JTextField tfHorasdedicacao;
     private javax.swing.JTextField tfNome;
     private javax.swing.JFormattedTextField tfRM;

@@ -21,16 +21,14 @@ public class Curso
     
     public Curso()
     {
-        this.codigo = 0;
         this.nome = "";
         this.horario = "";
         this.datainicio = "";
         this.datafim = "";
 
     }
-    public Curso( int codigo, String nome, String horario, String datainicio, String datafim )
+    public Curso(String nome, String horario, String datainicio, String datafim )
     {
-        this.codigo = codigo;
         this.nome = nome;
         this.horario = horario;
         this.datainicio = datainicio;
@@ -38,7 +36,6 @@ public class Curso
     }
     public Curso( Curso a )
     {
-        this.codigo = a.codigo;
         this.nome = a.nome;
         this.horario = a.horario;
         this.datainicio = a.datainicio;

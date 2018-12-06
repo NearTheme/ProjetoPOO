@@ -242,7 +242,7 @@ public class TelaCadastroAluno extends javax.swing.JInternalFrame {
         al.setRa(tfcadRA.getText());
         al.setCpf(tfcadCpf.getText());
         al.setNome(tfcadNome.getText());
-        al.setSenha((Arrays.toString(tfcadSenha.getPassword())));
+        al.setSenha(((tfcadSenha.getText())));
         al.setPerfil(Integer.parseInt(tfcadPerfil.getText()));
         al.setCurso(Integer.parseInt(tfcadCurso.getText()));
         al.setSemestre(Integer.parseInt(tfcadSemestre.getText()));

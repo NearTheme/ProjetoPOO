@@ -153,9 +153,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfFormacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfFormacao" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -233,13 +233,6 @@
             <Property name="text" type="java.lang.String" value="Formacao"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="tfFormacao">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="#0" subtype="-1" type="0"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Especializacao"/>
@@ -253,6 +246,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfHorasdedicacao">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfFormacao">
         </Component>
       </SubComponents>
     </Container>
